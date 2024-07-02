@@ -22,9 +22,10 @@ def process_characters(name):
         if code != '0' and code != prev_code:
             soundex += code
             prev_code = code
-        if len(soundex) + 1 == 4:  # +1 to account for the first letter
-            break
+            if len(soundex) == 3:  # Break early if we have enough characters
+                break
     return soundex
+
 
 def pad_soundex(soundex):
     # Pad with zeros to ensure length of 4
