@@ -22,8 +22,20 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex("Rupert"), "R163")
         
     def test_name_with_varying_length(self):
-        self.assertEqual(generate_soundex("Ashcraft"), "A261")
-        self.assertEqual(generate_soundex("Tymczak"), "T522")
+        # Names shorter than 4 characters
+        self.assertEqual(generate_soundex("Al"), "A400")
+        self.assertEqual(generate_soundex("Bo"), "B000")
+        self.assertEqual(generate_soundex("Lee"), "L000")
+
+        # Names exactly 4 characters
+        self.assertEqual(generate_soundex("John"), "J500")
+        self.assertEqual(generate_soundex("Paul"), "P400")
+        self.assertEqual(generate_soundex("Mark"), "M620")
+
+        # Names longer than 4 characters
+        self.assertEqual(generate_soundex("Smith"), "S530")
+        self.assertEqual(generate_soundex("Johnson"), "J525")
+        self.assertEqual(generate_soundex("Williams"), "W452")
 
 
 
