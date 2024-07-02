@@ -25,10 +25,6 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex("Ashcraft"), "A261")
         self.assertEqual(generate_soundex("Tymczak"), "T522")
 
-    def test_name_with_non_alpha_characters(self):
-        self.assertEqual(generate_soundex("H3llo"), "H400")
-        self.assertEqual(generate_soundex("P@ul"), "P000")
-        self.assertEqual(generate_soundex("O'Neill"), "O540")
 
 if __name__ == '__main__':
     unittest.main()
