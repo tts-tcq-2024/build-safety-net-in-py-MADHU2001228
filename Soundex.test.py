@@ -50,15 +50,47 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex("1234"), "1000")
 
     def test_get_soundex_code(self):
+        # Test for '1' mappings
         self.assertEqual(get_soundex_code('B'), '1')
+        self.assertEqual(get_soundex_code('F'), '1')
+        self.assertEqual(get_soundex_code('P'), '1')
+        self.assertEqual(get_soundex_code('V'), '1')
+        
+        # Test for '2' mappings
         self.assertEqual(get_soundex_code('C'), '2')
+        self.assertEqual(get_soundex_code('G'), '2')
+        self.assertEqual(get_soundex_code('J'), '2')
+        self.assertEqual(get_soundex_code('K'), '2')
+        self.assertEqual(get_soundex_code('Q'), '2')
+        self.assertEqual(get_soundex_code('S'), '2')
+        self.assertEqual(get_soundex_code('X'), '2')
+        self.assertEqual(get_soundex_code('Z'), '2')
+
+        # Test for '3' mappings
         self.assertEqual(get_soundex_code('D'), '3')
+        self.assertEqual(get_soundex_code('T'), '3')
+
+        # Test for '4' mapping
         self.assertEqual(get_soundex_code('L'), '4')
+
+        # Test for '5' mappings
         self.assertEqual(get_soundex_code('M'), '5')
+        self.assertEqual(get_soundex_code('N'), '5')
+
+        # Test for '6' mapping
         self.assertEqual(get_soundex_code('R'), '6')
+
+        # Test for characters that should return '0'
         self.assertEqual(get_soundex_code('H'), '0')
         self.assertEqual(get_soundex_code('W'), '0')
         self.assertEqual(get_soundex_code('A'), '0')
+        self.assertEqual(get_soundex_code('E'), '0')
+        self.assertEqual(get_soundex_code('I'), '0')
+        self.assertEqual(get_soundex_code('O'), '0')
+        self.assertEqual(get_soundex_code('U'), '0')
+        self.assertEqual(get_soundex_code('Y'), '0')
+        self.assertEqual(get_soundex_code('1'), '0')
+
 
 
 
