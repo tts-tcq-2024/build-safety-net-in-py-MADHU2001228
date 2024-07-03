@@ -90,6 +90,7 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(get_soundex_code('U'), '0')
         self.assertEqual(get_soundex_code('Y'), '0')
         self.assertEqual(get_soundex_code('1'), '0')
+        self.assertEqual(get_soundex_code('*'), '0')
 
 
 
