@@ -36,6 +36,14 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex("Random"), "R535")
         self.assertEqual(generate_soundex("Parent"), "P653")
         self.assertEqual(generate_soundex("Customer"), "C235")
+        
+    #def test_name_with_repeating_characters(self):
+        #self.assertEqual(generate_soundex("Aaaa"), "A000")
+        #self.assertEqual(generate_soundex("Bbbb"), "B100")
+
+    def test_name_with_non_alphabetic_characters(self):
+        self.assertEqual(generate_soundex("A1"), "A000")
+        self.assertEqual(generate_soundex("B2B"), "B100")
 
 
 
