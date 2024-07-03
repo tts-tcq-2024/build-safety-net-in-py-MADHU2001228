@@ -45,6 +45,20 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex("A1"), "A000")
         self.assertEqual(generate_soundex("B2R"), "B600")
 
+    def test_name_with_numbers_only(self):
+        self.assertEqual(generate_soundex("1234"), "1000")
+
+    def test_get_soundex_code(self):
+        self.assertEqual(get_soundex_code('B'), '1')
+        self.assertEqual(get_soundex_code('C'), '2')
+        self.assertEqual(get_soundex_code('D'), '3')
+        self.assertEqual(get_soundex_code('L'), '4')
+        self.assertEqual(get_soundex_code('M'), '5')
+        self.assertEqual(get_soundex_code('R'), '6')
+        self.assertEqual(get_soundex_code('H'), '0')
+        self.assertEqual(get_soundex_code('W'), '0')
+        self.assertEqual(get_soundex_code('A'), '0')
+
 
 
 
