@@ -11,7 +11,7 @@ class TestSoundex(unittest.TestCase):
 
     def test_two_characters(self):
         self.assertEqual(generate_soundex("MI"), "M000")
-        self.assertEqual(generate_soundex("MB"), "A100")
+        self.assertEqual(generate_soundex("MB"), "M100")
 
     def test_three_characters(self):
         self.assertEqual(generate_soundex("ART"), "A630")
