@@ -16,18 +16,13 @@ def generate_soundex(name):
         return ""
 
     soundex = name[0].upper()  # Start with the first letter (capitalized)
-    prev_code = get_soundex_code(soundex)
     soundex_codes = [soundex]
 
-    # Process remaining characters in the name
     for char in name[1:]:
         code = get_soundex_code(char)
-        if len(soundex_codes) < 4 and code != '0' and code != prev_code:
+        if len(soundex_codes) < 4 and code != '0' and code != get_soundex_code(soundex_codes[-1]):
             soundex_codes.append(code)
-            prev_code = code
 
     # Pad with zeros if necessary to ensure length is 4
     return ''.join(soundex_codes).ljust(4, '0')
-
-
     return soundex
