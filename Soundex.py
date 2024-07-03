@@ -25,17 +25,15 @@ def is_length_four(soundex):
     return len(soundex) == 4
 
 def process_characters(name, soundex, prev_code):
-    # List comprehension to generate codes for all characters
-    codes = [get_soundex_code(char) for char in name[1:]]
+    # Generate codes and filter out '0' and codes that are the same as prev_code
+    codes = filter(lambda code: code != '0' and code != prev_code, (get_soundex_code(char) for char in name[1:]))
     
-    # Filter out '0' and codes that are the same as prev_code
-    valid_codes = [code for code in codes if code != '0' and code != prev_code]
-    
-    # Join the first character with the valid codes and take the first 3 characters
-    soundex += ''.join(valid_codes)[:3]
+    # Join the valid codes and take the first 3 characters
+    soundex += ''.join(codes)[:3]
     
     # Pad with zeros if necessary to ensure length is 4
     return soundex.ljust(4, '0')
+
 
 def pad_soundex(soundex):
     # Pad with zeros if necessary to ensure length is 4
