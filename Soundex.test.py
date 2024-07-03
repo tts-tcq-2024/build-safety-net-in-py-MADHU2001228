@@ -7,35 +7,35 @@ class TestSoundex(unittest.TestCase):
         self.assertEqual(generate_soundex(""), "")
 
     def test_single_character(self):
-        self.assertEqual(generate_soundex("A"), "A000")
+        self.assertEqual(generate_soundex("M"), "M000")
 
     def test_two_characters(self):
-        self.assertEqual(generate_soundex("AI"), "A000")
-        self.assertEqual(generate_soundex("AB"), "A100")
+        self.assertEqual(generate_soundex("MI"), "M000")
+        self.assertEqual(generate_soundex("MB"), "A100")
 
     def test_three_characters(self):
         self.assertEqual(generate_soundex("ART"), "A630")
-        self.assertEqual(generate_soundex("ARB"), "A610")
+        self.assertEqual(generate_soundex("ABC"), "A120")
 
     def test_name_with_similar_sounding_letters(self):
-        self.assertEqual(generate_soundex("Robert"), "R163")
-        self.assertEqual(generate_soundex("Rupert"), "R163")
+        self.assertEqual(generate_soundex("Floor"), "F460")
+        self.assertEqual(generate_soundex("Flower"), "F460")
         
     def test_name_with_varying_length(self):
         # Names shorter than 4 characters
-        self.assertEqual(generate_soundex("Al"), "A400")
-        self.assertEqual(generate_soundex("Bo"), "B000")
-        self.assertEqual(generate_soundex("Lee"), "L000")
+        self.assertEqual(generate_soundex("Ml"), "M400")
+        self.assertEqual(generate_soundex("Ro"), "R000")
+        self.assertEqual(generate_soundex("Was"), "W200")
 
         # Names exactly 4 characters
-        self.assertEqual(generate_soundex("John"), "J500")
-        self.assertEqual(generate_soundex("Paul"), "P400")
-        self.assertEqual(generate_soundex("Mark"), "M620")
+        self.assertEqual(generate_soundex("Mass"), "M200")
+        self.assertEqual(generate_soundex("Part"), "P630")
+        self.assertEqual(generate_soundex("Rose"), "R200")
 
         # Names longer than 4 characters
-        self.assertEqual(generate_soundex("Smith"), "S530")
-        self.assertEqual(generate_soundex("Johnson"), "J525")
-        self.assertEqual(generate_soundex("Williams"), "W452")
+        self.assertEqual(generate_soundex("Random"), "R535")
+        self.assertEqual(generate_soundex("Parent"), "P653")
+        self.assertEqual(generate_soundex("Customer"), "C235")
 
 
 
