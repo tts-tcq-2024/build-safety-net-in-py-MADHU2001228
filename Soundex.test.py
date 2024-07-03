@@ -45,6 +45,7 @@ class TestSoundex(unittest.TestCase):
     def test_name_with_non_alphabetic_characters(self):
         self.assertEqual(generate_soundex("A1"), "A000")
         self.assertEqual(generate_soundex("B2R"), "B600")
+        self.assertEqual(generate_soundex("A!@#$%^&*()"), "A000")
 
     def test_name_with_numbers_only(self):
         self.assertEqual(generate_soundex("1234"), "1000")
