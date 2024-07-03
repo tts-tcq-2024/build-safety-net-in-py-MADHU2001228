@@ -18,14 +18,19 @@ def initialize_soundex(name):
 def should_add_code(char, code, prev_code):
     return code != '0' and code != prev_code
 
+def add_code_to_soundex(soundex, code):
+    return soundex + code
+
+def is_length_four(soundex):
+    return len(soundex) == 4
+
 def process_characters(name, soundex, prev_code):
-    # Process each character to build the soundex code
     for char in name[1:]:
         code = get_soundex_code(char)
         if should_add_code(char, code, prev_code):
-            soundex += code
+            soundex = add_code_to_soundex(soundex, code)
             prev_code = code
-        if len(soundex) == 4:
+        if is_length_four(soundex):
             break
     return soundex
 
