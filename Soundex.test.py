@@ -3,11 +3,6 @@ from Soundex import generate_soundex
 
 class TestSoundex(unittest.TestCase):
 
-    def test_generate_soundex_empty(self):
-import unittest
-
-class TestSoundex(unittest.TestCase):
-
     def test_empty_string(self):
         self.assertEqual(generate_soundex(""), "")
 
