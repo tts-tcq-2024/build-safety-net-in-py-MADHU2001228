@@ -18,22 +18,15 @@ def initialize_soundex(name):
 def should_add_code(char, code, prev_code):
     return code != '0' and code != prev_code
 
-def add_code_to_soundex(soundex, code):
-    return soundex + code
-
-def is_length_four(soundex):
-    return len(soundex) == 4
-
 def process_characters(name, soundex, prev_code):
-    # Generate codes and filter out '0' and codes that are the same as prev_code
-    codes = filter(lambda code: code != '0' and code != prev_code, (get_soundex_code(char) for char in name[1:]))
-    
-    # Join the valid codes and take the first 3 characters
-    soundex += ''.join(codes)[:3]
-    
-    return soundex
+    soundex_codes = [soundex]  # Start with the initialized soundex
 
-def pad_soundex(soundex):
+    # Iterate over each character (except the first) in the name
+    soundex_codes += [get_soundex_code(char) for char in name[1:] if should_add_code(char, get_soundex_code(char), prev_code)]
+
+    # Join the valid codes and take the first 3 characters
+    soundex = ''.join(soundex_codes)[:4]
+
     # Pad with zeros if necessary to ensure length is 4
     return soundex.ljust(4, '0')
 
@@ -43,4 +36,4 @@ def generate_soundex(name):
 
     soundex, prev_code = initialize_soundex(name)
     soundex = process_characters(name, soundex, prev_code)
-    return pad_soundex(soundex)
+    return soundex
