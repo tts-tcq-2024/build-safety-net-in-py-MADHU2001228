@@ -11,22 +11,17 @@ def get_soundex_code(c):
     return mapping.get(c, '0')  # Default to '0' for non-mapped characters
 
 def initialize_soundex(name):
-    # Initialize the soundex code with the first letter
     first_letter = name[0].upper()
     return first_letter, get_soundex_code(first_letter)
 
-def process_characters(name, soundex, prev_code):
+def process_characters(name, prev_code):
+    # Generate codes for characters in the name starting from the second character
     codes = (get_soundex_code(char) for char in name[1:])
-    filtered_codes = [code for code in codes if code != '0' and code != prev_code]
-    for code in filtered_codes:
-        soundex += code
-        prev_code = code
-        if len(soundex) == 4:
-            break
-    return soundex
+    # Filter out '0' codes and consecutive duplicates
+    filtered_codes = (code for code in codes if code != '0' and code != prev_code)
+    return ''.join(filtered_codes)[:3]  # Take the first 3 valid codes
 
 def pad_soundex(soundex):
-    # Pad with zeros if necessary to ensure length is 4
     return soundex.ljust(4, '0')
 
 def generate_soundex(name):
@@ -34,5 +29,5 @@ def generate_soundex(name):
         return ""
 
     soundex, prev_code = initialize_soundex(name)
-    soundex = process_characters(name, soundex, prev_code)
+    soundex += process_characters(name, prev_code)
     return pad_soundex(soundex)
