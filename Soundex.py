@@ -19,14 +19,10 @@ def should_add_code(char, code, prev_code):
     return code != '0' and code != prev_code
 
 def process_characters(name, soundex, prev_code):
-    soundex_codes = [soundex]  # Start with the initialized soundex
+    codes = [get_soundex_code(char) for char in name[1:] if should_add_code(char, get_soundex_code(char), prev_code)]
+    return (soundex + ''.join(codes)[:3]).ljust(4, '0')
 
-    # Iterate over each character (except the first) in the name
-    soundex_codes += [get_soundex_code(char) for char in name[1:] if should_add_code(char, get_soundex_code(char), prev_code)]
-
-    # Join the valid codes and take the first 3 characters
-    soundex = ''.join(soundex_codes)[:4]
-
+def pad_soundex(soundex):
     # Pad with zeros if necessary to ensure length is 4
     return soundex.ljust(4, '0')
 
@@ -36,4 +32,4 @@ def generate_soundex(name):
 
     soundex, prev_code = initialize_soundex(name)
     soundex = process_characters(name, soundex, prev_code)
-    return soundex
+    return pad_soundex(soundex)
